@@ -23,7 +23,7 @@ pipeline {
             steps{
                 sh 'terraform plan'
             }
-
+        }
         stage ("terraform apply") {
             steps {
                 input message : "Proceed with terraform apply ?"
@@ -36,6 +36,5 @@ pipeline {
                 sh 'terraform destroy --auto-approve'
             }
         }*/
-        }
     }
 }
