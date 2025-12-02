@@ -13,7 +13,7 @@ pipeline {
             }
         }
     
-        stage ("terraform init & format & validate") {
+        /*stage ("terraform init & format & validate") {
             steps {
                 dir("infra") {
                     sh 'terraform init && terraform fmt && terraform validate'
@@ -35,12 +35,12 @@ pipeline {
                     sh 'terraform apply --auto-approve'
                 }
             }
-        }
+        }*/
 
-        /*stage ("terraform destroy") {
+        stage ("terraform destroy") {
             steps {
                 sh 'terraform destroy --auto-approve'
             }
-        }*/
+        }
     }
 }
