@@ -13,21 +13,27 @@ pipeline {
             }
         }
     
-        stage ("terraform init & format & validate"){
+        stage ("terraform init & format & validate") {
             steps {
-                sh 'terraform init && terraform fmt && terraform validate'
+                dir("infra") {
+                    sh 'terraform init && terraform fmt && terraform validate'
+                }
             }
         }
 
         stage ("terraform plan") {
-            steps{
-                sh 'terraform plan'
+            steps {
+                dir("infra") {
+                    sh 'terraform plan'
+                }
             }
         }
         stage ("terraform apply") {
             steps {
                 input message : "Proceed with terraform apply ?"
-                sh 'terraform apply'
+                dir("infra") {
+                    sh 'terraform apply'
+                }
             }
         }
 
