@@ -39,7 +39,9 @@ pipeline {
 
         stage ("terraform destroy") {
             steps {
-                sh 'terraform destroy --auto-approve'
+                dir("infra") {
+                    sh 'terraform destroy --auto-approve'
+                }
             }
         }
     }
