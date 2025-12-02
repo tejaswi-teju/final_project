@@ -1,0 +1,36 @@
+pipeline {
+    agent any
+
+    stages {
+        stage ("Checkout SCM") {
+            steps {
+                git "https://github.com/tejaswi-teju/final_project.git"
+            }
+        }
+    
+        stage ("terraform init & format & validate"){
+            steps {
+                sh 'terraform init && terraform fmt && terraform validate'
+            }
+        }
+
+        stage ("terraform plan") {
+            steps{
+                sh 'terraform plan'
+            }
+
+        stage ("terraform apply") {
+            steps {
+                input message : "Proceed with terraform apply ?"
+                sh 'terraform apply'
+            }
+        }
+
+        /*stage ("terraform destroy") {
+            steps {
+                sh 'terraform destroy --auto-approve'
+            }
+        }*/
+        }
+    }
+}
