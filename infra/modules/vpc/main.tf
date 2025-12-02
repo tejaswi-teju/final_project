@@ -42,7 +42,7 @@ resource "aws_route_table" "public_rtb" {
 
 # Associate internet gateway to the public route table
 resource "aws_route" "igw_route" {
-    destination_cidr_block = "0.0.0/0"
+    destination_cidr_block = "0.0.0.0/0"
     route_table_id = aws_route_table.public_rtb.id
     gateway_id = aws_internet_gateway.igw-1.id
 }
